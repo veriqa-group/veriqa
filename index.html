@@ -1,332 +1,610 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
-
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>VeriQA Platform</title>
-    <meta property="og:title" content="VeriQA - Automation Platform" />
-    <meta property="og:description" content="Nền tảng quản lý kiểm thử tự động cho Web, Mobile, API, Load và Security." />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      property="og:description"
+      content="Nền tảng quản lý kiểm thử tự động cho Web, Mobile, API, Load và Security."
+    />
     <meta property="og:image" content="https://veriqa.net/og-image.png" />
     <meta property="og:url" content="https://veriqa.net/" />
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#0ea5e9" />
-    
-    <link rel="icon"
-        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%230ea5e9'/%3E%3Ctext x='50' y='60' font-size='48' text-anchor='middle' fill='white' font-family='Segoe UI, Roboto, Arial'%3EQ%3C/text%3E%3C/svg%3E" />
+    <title>VeriQA Platform</title>
     <style>
-        :root {
-            --brand: #0ea5e9;
-            /* màu chủ đạo */
-            --ink: #0b1220;
-            /* chữ */
-            --muted: #6b7280;
-            /* chữ phụ */
-            --card: #ffffffcc;
-            /* nền thẻ (glass) */
-            --ring: rgba(14, 164, 233, 0.678);
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        background: linear-gradient(
+          135deg,
+          #0f172a 0%,
+          #1e293b 50%,
+          #0f172a 100%
+        );
+        color: #e2e8f0;
+        line-height: 1.6;
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      /* Header */
+      header {
+        text-align: center;
+        padding: 4rem 2rem 3rem;
+        animation: fadeInDown 0.8s ease-out;
+      }
+
+      header h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: #fff;
+        margin-bottom: 1rem;
+        text-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+      }
+
+      header p {
+        font-size: 1.5rem;
+        color: #cbd5e1;
+      }
+
+      /* Section Titles */
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-align: center;
+        margin: 3rem 0 2rem;
+        color: #fff;
+      }
+
+      /* Architecture Layers */
+      .architecture-section {
+        padding: 2rem 0;
+      }
+
+      .layer {
+        background: rgba(30, 41, 59, 0.5);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        animation: fadeInUp 0.6s ease-out backwards;
+      }
+
+      .layer:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .layer:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .layer:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .layer:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+
+      .layer:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .layer-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .layer-dot {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        margin-right: 1rem;
+        box-shadow: 0 0 10px currentColor;
+      }
+
+      .dot-blue {
+        background: #3b82f6;
+      }
+      .dot-green {
+        background: #22c55e;
+      }
+      .dot-purple {
+        background: #a855f7;
+      }
+      .dot-orange {
+        background: #f97316;
+      }
+
+      .layer-title {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #fff;
+      }
+
+      .components-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-left: 2rem;
+      }
+
+      .component {
+        background: rgba(51, 65, 85, 0.5);
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        color: #cbd5e1;
+        transition: all 0.3s ease;
+      }
+
+      .component:hover {
+        background: rgba(71, 85, 105, 0.7);
+        transform: scale(1.05);
+      }
+
+      /* Features Grid */
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 2rem 0;
+      }
+
+      .feature-card {
+        background: rgba(30, 41, 59, 0.5);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        padding: 2rem;
+        transition: all 0.3s ease;
+        animation: fadeInUp 0.6s ease-out backwards;
+      }
+
+      .feature-card:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .feature-card:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .feature-card:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .feature-card:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+      .feature-card:nth-child(5) {
+        animation-delay: 0.5s;
+      }
+      .feature-card:nth-child(6) {
+        animation-delay: 0.6s;
+      }
+
+      .feature-card:hover {
+        background: rgba(51, 65, 85, 0.7);
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      }
+
+      .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .feature-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 0.5rem;
+      }
+
+      .feature-desc {
+        color: #cbd5e1;
+      }
+
+      /* Tech Stack */
+      .tech-stack {
+        background: rgba(30, 41, 59, 0.5);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        padding: 3rem;
+        margin: 2rem 0;
+      }
+
+      .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+        margin-top: 2rem;
+      }
+
+      .tech-category h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #60a5fa;
+      }
+
+      .tech-category:nth-child(2) h3 {
+        color: #4ade80;
+      }
+      .tech-category:nth-child(3) h3 {
+        color: #c084fc;
+      }
+      .tech-category:nth-child(4) h3 {
+        color: #fb923c;
+      }
+
+      .tech-category ul {
+        list-style: none;
+      }
+
+      .tech-category li {
+        padding: 0.5rem 0;
+        color: #cbd5e1;
+      }
+
+      .tech-category strong {
+        color: #e2e8f0;
+      }
+
+      /* Roadmap */
+      .roadmap {
+        background: linear-gradient(
+          135deg,
+          rgba(30, 58, 138, 0.3) 0%,
+          rgba(88, 28, 135, 0.3) 100%
+        );
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        padding: 3rem;
+        margin: 3rem 0;
+      }
+
+      .phase {
+        background: rgba(30, 41, 59, 0.3);
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        transition: transform 0.3s ease;
+      }
+
+      .phase:hover {
+        transform: translateX(10px);
+      }
+
+      .phase-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #93c5fd;
+        margin-bottom: 1rem;
+      }
+
+      .phase-items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      .phase-item {
+        background: rgba(51, 65, 85, 0.5);
+        color: #cbd5e1;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+      }
+
+      .phase-item:hover {
+        background: rgba(71, 85, 105, 0.7);
+        transform: scale(1.05);
+      }
+
+      /* CTA Button */
+      .cta-section {
+        text-align: center;
+        padding: 4rem 2rem;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        color: white;
+        padding: 1.25rem 3rem;
+        border-radius: 50px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(59, 130, 246, 0.5);
+      }
+
+      /* Animations */
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 2.5rem;
         }
 
-        * {
-            box-sizing: border-box
+        header p {
+          font-size: 1.2rem;
         }
 
-        html,
-        body {
-            height: 100%
+        .section-title {
+          font-size: 2rem;
         }
 
-        body {
-            margin: 0;
-            font-family: ui-sans-serif, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-            color: var(--ink);
-            background: radial-gradient(1200px 800px at 10% -10%, #e0f2fe 0%, transparent 60%),
-                radial-gradient(1000px 600px at 110% 10%, #f1f5f9 0%, transparent 60%),
-                linear-gradient(180deg, #ffffff, #f8fafc);
-            min-height: 100%;
-            display: grid;
-            place-items: center;
-            padding: 32px;
+        .components-grid {
+          grid-template-columns: 1fr;
         }
 
-        .wrap {
-            width: min(980px, 100%);
+        .features-grid {
+          grid-template-columns: 1fr;
         }
 
-        .card {
-            background: var(--card);
-            backdrop-filter: blur(10px);
-            border: 1px solid #e5e7eb;
-            border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(2, 6, 23, .08);
-            overflow: hidden;
-            position: relative;
+        .tech-grid {
+          grid-template-columns: 1fr;
         }
+      }
 
-        .hero {
-            padding: 40px 28px 24px;
-            text-align: center
-        }
-
-        .logo {
-            width: 64px;
-            height: 64px;
-            border-radius: 999px;
-            margin: 0 auto 10px;
-            background: linear-gradient(135deg, var(--brand), #22d3ee);
-            display: grid;
-            place-items: center;
-            box-shadow: 0 8px 24px var(--ring)
-        }
-
-        .logo span {
-            color: white;
-            font-weight: 800
-        }
-
-        h1 {
-            margin: 10px 0 8px;
-            font-size: clamp(28px, 6vw, 42px);
-            line-height: 1.05
-        }
-
-        .tag {
-            display: inline-flex;
-            gap: 8px;
-            align-items: center;
-            background: #e0f2fe;
-            color: #0369a1;
-            font-weight: 600;
-            border-radius: 999px;
-            padding: 8px 12px;
-            margin: 4px 0 16px;
-        }
-
-        p.sub {
-            color: var(--muted);
-            margin: 0 auto;
-            max-width: 60ch;
-        }
-
-        .countdown {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 12px;
-            margin: 28px auto 10px;
-            max-width: 720px
-        }
-
-        .cd {
-            padding: 14px 10px;
-            border-radius: 16px;
-            border: 1px solid #e5e7eb;
-            background: white
-        }
-
-        .cd big {
-            font-size: clamp(22px, 5vw, 34px);
-            font-weight: 800;
-            display: block
-        }
-
-        .cd label {
-            font-size: 12px;
-            color: var(--muted);
-            letter-spacing: .08em;
-            text-transform: uppercase
-        }
-
-        form {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin: 16px auto 6px;
-            max-width: 640px
-        }
-
-        input[type=email] {
-            flex: 1;
-            min-width: 200px;
-            padding: 14px 14px;
-            border-radius: 14px;
-            border: 1px solid #e5e7eb;
-            outline: none;
-            font-size: 16px;
-        }
-
-        input[type=email]:focus {
-            border-color: var(--brand);
-            box-shadow: 0 0 0 4px var(--ring)
-        }
-
-        button {
-            padding: 14px 18px;
-            border-radius: 14px;
-            border: 0;
-            background: linear-gradient(135deg, var(--brand), #22d3ee);
-            color: white;
-            font-weight: 700;
-            cursor: pointer
-        }
-
-        button:active {
-            transform: translateY(1px)
-        }
-
-        .chips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            justify-content: center;
-            margin: 12px auto 24px;
-        }
-
-        .chip {
-            border: 1px dashed #bae6fd;
-            background: #f0f9ff;
-            color: #0c4a6e;
-            padding: 8px 12px;
-            border-radius: 999px;
-            font-size: 14px
-        }
-
-        .foot {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-            border-top: 1px solid #e5e7eb;
-            padding: 16px 20px;
-            background: #ffffffb3
-        }
-
-        .brand {
-            font-weight: 800;
-            letter-spacing: .4px
-        }
-
-        .links {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap
-        }
-
-        .links a {
-            color: #0369a1;
-            text-decoration: none
-        }
-
-        .links a:hover {
-            text-decoration: underline
-        }
-
-        @media (max-width:640px) {
-            .foot {
-                flex-direction: column;
-                align-items: flex-start
-            }
-
-            form {
-                flex-direction: column
-            }
-        }
+      /* Footer */
+      footer {
+        text-align: center;
+        padding: 3rem 2rem;
+        color: #94a3b8;
+        border-top: 1px solid rgba(148, 163, 184, 0.1);
+      }
     </style>
-</head>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header>
+        <h1>VeriQA Automation Platform</h1>
+        <p>Enterprise-grade test automation architecture</p>
+      </header>
 
-<body>
-    <main class="wrap">
-        <section class="card" aria-labelledby="title">
-            <div class="hero">
-                <!-- <div class="tag" aria-label="Thông báo">🚀 Sắp ra mắt</div> -->
-                <h1 id="title">Nền tảng QA/QC tự động hoá</h1>
-                <p class="sub">Xây dựng, chạy và quản lý kiểm thử </p>
-                <p><strong>API · Web · Mobile · Load · Security · Kafka</strong></p>
-                <p>Đăng ký để nhận thông tin sớm nhất khi mở beta.</p>
-                <div class="countdown" id="countdown" data-launch="2025-12-01T00:00:00+07:00" aria-live="polite">
-                    <div class="cd"><big id="d">--</big><label>Ngày</label></div>
-                    <div class="cd"><big id="h">--</big><label>Giờ</label></div>
-                    <div class="cd"><big id="m">--</big><label>Phút</label></div>
-                    <div class="cd"><big id="s">--</big><label>Giây</label></div>
-                </div>
+      <!-- Architecture Section -->
+      <section class="architecture-section">
+        <h2 class="section-title">System Architecture</h2>
 
-                <form id="form">
-                    <input id="email" type="email" placeholder="Nhập email của bạn" aria-label="Email" required />
-                    <button type="submit" aria-label="Đăng ký nhận tin">Đăng ký</button>
-                </form>
-                <p id="msg" class="sub" role="status" aria-live="polite"></p>
+        <div class="layer">
+          <div class="layer-header">
+            <div class="layer-dot dot-blue"></div>
+            <h3 class="layer-title">UI Layer (PySide6)</h3>
+          </div>
+          <div class="components-grid">
+            <div class="component">Project Explorer</div>
+            <div class="component">Test Case Editor</div>
+            <div class="component">Object Repository</div>
+            <div class="component">Script Editor</div>
+            <div class="component">Test Runner</div>
+            <div class="component">Report Viewer</div>
+          </div>
+        </div>
 
-                <div class="chips" aria-label="Các năng lực chính">
-                    <span class="chip">Trình dựng test trực quan</span>
-                    <span class="chip">Tạo .robot tự động</span>
-                    <span class="chip">Báo cáo thời gian thực</span>
-                    <span class="chip">Quản lý người dùng & dự án</span>
-                    <span class="chip">CI/CD tích hợp</span>
-                </div>
-            </div>
+        <div class="layer">
+          <div class="layer-header">
+            <div class="layer-dot dot-green"></div>
+            <h3 class="layer-title">Core Engine Layer</h3>
+          </div>
+          <div class="components-grid">
+            <div class="component">Test Orchestrator</div>
+            <div class="component">Execution Engine</div>
+            <div class="component">Recorder Service</div>
+            <div class="component">Object Spy Service</div>
+            <div class="component">Data Manager</div>
+            <div class="component">Report Generator</div>
+          </div>
+        </div>
 
-            <div class="foot">
-                <div class="brand">VeriQA Platform</div>
-                <div class="links">
-                    <a href="#" aria-label="Email liên hệ">tunv@54vie.vn</a>
-                    <a href="#" aria-label="Điều khoản">Điều khoản</a>
-                    <a href="#" aria-label="Chính sách bảo mật">Bảo mật</a>
-                </div>
-            </div>
-        </section>
-    </main>
+        <div class="layer">
+          <div class="layer-header">
+            <div class="layer-dot dot-purple"></div>
+            <h3 class="layer-title">Driver Layer</h3>
+          </div>
+          <div class="components-grid">
+            <div class="component">Selenium WebDriver</div>
+            <div class="component">Playwright</div>
+            <div class="component">Appium (Mobile)</div>
+            <div class="component">API Client</div>
+            <div class="component">Database Connector</div>
+          </div>
+        </div>
 
-    <script>
-        // ⏱️ Countdown
-        (function () {
-            const el = document.getElementById('countdown');
-            const d = el.dataset.launch;
-            const launch = new Date(d);
-            const ids = { d: 'd', h: 'h', m: 'm', s: 's' };
-            const out = Object.fromEntries(Object.keys(ids).map(k => [k, document.getElementById(ids[k])]))
+        <div class="layer">
+          <div class="layer-header">
+            <div class="layer-dot dot-orange"></div>
+            <h3 class="layer-title">Integration Layer</h3>
+          </div>
+          <div class="components-grid">
+            <div class="component">Git Integration</div>
+            <div class="component">CI/CD Plugins</div>
+            <div class="component">JIRA Connector</div>
+            <div class="component">Cloud Execution</div>
+            <div class="component">TestRail API</div>
+          </div>
+        </div>
+      </section>
 
-            function tick() {
-                const now = new Date();
-                let diff = Math.max(0, launch - now);
-                const sec = Math.floor(diff / 1000);
-                const days = Math.floor(sec / 86400);
-                const hours = Math.floor((sec % 86400) / 3600);
-                const mins = Math.floor((sec % 3600) / 60);
-                const secs = sec % 60;
-                out.d.textContent = String(days);
-                out.h.textContent = String(hours).padStart(2, '0');
-                out.m.textContent = String(mins).padStart(2, '0');
-                out.s.textContent = String(secs).padStart(2, '0');
-                if (diff <= 0) clearInterval(timer);
-            }
-            tick();
-            const timer = setInterval(tick, 1000);
-        })();
+      <!-- Features Section -->
+      <section>
+        <h2 class="section-title">Key Features</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">📝</div>
+            <h3 class="feature-title">Test Case Designer</h3>
+            <p class="feature-desc">Visual editor với drag-drop keywords</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <h3 class="feature-title">Object Repository</h3>
+            <p class="feature-desc">Quản lý UI elements centralized</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⏺️</div>
+            <h3 class="feature-title">Recorder</h3>
+            <p class="feature-desc">Record actions và generate test cases</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔍</div>
+            <h3 class="feature-title">Object Spy</h3>
+            <p class="feature-desc">Capture và inspect UI elements</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3 class="feature-title">Reports</h3>
+            <p class="feature-desc">Chi tiết execution results với charts</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔄</div>
+            <h3 class="feature-title">CI/CD</h3>
+            <p class="feature-desc">Jenkins, GitLab, Azure DevOps</p>
+          </div>
+        </div>
+      </section>
 
-        // 📬 Faux subscribe (localStorage + thông báo)
-        (function () {
-            const form = document.getElementById('form');
-            const email = document.getElementById('email');
-            const msg = document.getElementById('msg');
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const v = email.value.trim();
-                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) {
-                    msg.textContent = 'Email không hợp lệ. Vui lòng kiểm tra lại.';
-                    return;
-                }
-                try {
-                    const key = 'qaqc_waitlist';
-                    const list = JSON.parse(localStorage.getItem(key) || '[]');
-                    if (!list.includes(v)) list.push(v);
-                    localStorage.setItem(key, JSON.stringify(list));
-                    msg.textContent = 'Cảm ơn! Chúng tôi sẽ liên hệ khi có bản beta.';
-                    email.value = '';
-                } catch (err) {
-                    msg.textContent = 'Đã xảy ra lỗi nhỏ. Vui lòng thử lại sau.';
-                }
-            });
-        })();
-    </script>
-</body>
+      <!-- Tech Stack Section -->
+      <section class="tech-stack">
+        <h2 class="section-title">Recommended Tech Stack</h2>
+        <div class="tech-grid">
+          <div class="tech-category">
+            <h3>Frontend/UI</h3>
+            <ul>
+              <li>• <strong>PySide6/PyQt6</strong> - Main UI framework</li>
+              <li>
+                • <strong>QScintilla</strong> - Code editor với syntax
+                highlighting
+              </li>
+              <li>
+                • <strong>QtWebEngine</strong> - Embedded browser cho recorder
+              </li>
+            </ul>
+          </div>
+          <div class="tech-category">
+            <h3>Test Engines</h3>
+            <ul>
+              <li>
+                • <strong>Selenium</strong> - Web automation (legacy support)
+              </li>
+              <li>• <strong>Playwright</strong> - Modern web testing</li>
+              <li>• <strong>Appium</strong> - Mobile automation</li>
+              <li>• <strong>Requests</strong> - API testing</li>
+            </ul>
+          </div>
+          <div class="tech-category">
+            <h3>Storage</h3>
+            <ul>
+              <li>• <strong>SQLite</strong> - Local project database</li>
+              <li>• <strong>JSON/YAML</strong> - Test case definitions</li>
+              <li>• <strong>Git</strong> - Version control integration</li>
+            </ul>
+          </div>
+          <div class="tech-category">
+            <h3>Reporting</h3>
+            <ul>
+              <li>• <strong>Jinja2</strong> - HTML report templates</li>
+              <li>• <strong>Matplotlib</strong> - Charts & graphs</li>
+              <li>• <strong>ReportLab</strong> - PDF generation</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
+      <!-- Roadmap Section -->
+      <section class="roadmap">
+        <h2 class="section-title">Development Roadmap</h2>
+
+        <div class="phase">
+          <h3 class="phase-title">Phase 1 (2-3 months)</h3>
+          <div class="phase-items">
+            <span class="phase-item">Project structure</span>
+            <span class="phase-item">Basic UI</span>
+            <span class="phase-item">Simple web recorder</span>
+            <span class="phase-item">Test case editor</span>
+            <span class="phase-item">Selenium integration</span>
+          </div>
+        </div>
+
+        <div class="phase">
+          <h3 class="phase-title">Phase 2 (2-3 months)</h3>
+          <div class="phase-items">
+            <span class="phase-item">Object repository</span>
+            <span class="phase-item">Playwright integration</span>
+            <span class="phase-item">Data-driven testing</span>
+            <span class="phase-item">Basic reporting</span>
+            <span class="phase-item">Test suite management</span>
+          </div>
+        </div>
+
+        <div class="phase">
+          <h3 class="phase-title">Phase 3 (3-4 months)</h3>
+          <div class="phase-items">
+            <span class="phase-item">Mobile testing (Appium)</span>
+            <span class="phase-item">API testing</span>
+            <span class="phase-item">Advanced recorder</span>
+            <span class="phase-item">CI/CD plugins</span>
+            <span class="phase-item">Cloud execution</span>
+          </div>
+        </div>
+
+        <div class="phase">
+          <h3 class="phase-title">Phase 4 (2-3 months)</h3>
+          <div class="phase-items">
+            <span class="phase-item">Advanced reporting</span>
+            <span class="phase-item">JIRA integration</span>
+            <span class="phase-item">Performance testing</span>
+            <span class="phase-item">Polish & optimization</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="cta-section">
+        <a href="#" class="cta-button">Start Building Now</a>
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <p>&copy; 2025 VeriQA Automation Platform. All rights reserved.</p>
+      </footer>
+    </div>
+  </body>
 </html>
