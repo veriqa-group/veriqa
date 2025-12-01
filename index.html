@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
+      name="description"
+      content="VeriQA - Nền tảng quản lý kiểm thử tự động cho Web, Mobile, API. Tiết kiệm 80% thời gian testing."
+    />
+    <meta
       property="og:description"
       content="Nền tảng quản lý kiểm thử tự động cho Web, Mobile, API, Load và Security."
     />
@@ -11,7 +15,7 @@
     <meta property="og:url" content="https://veriqa.net/" />
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#0ea5e9" />
-    <title>VeriQA Platform</title>
+    <title>VeriQA - Test Automation Platform | Kiểm thử tự động chuyên nghiệp</title>
     <style>
       * {
         margin: 0;
@@ -22,12 +26,7 @@
       body {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
           "Helvetica Neue", Arial, sans-serif;
-        background: linear-gradient(
-          135deg,
-          #0f172a 0%,
-          #1e293b 50%,
-          #0f172a 100%
-        );
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
         color: #e2e8f0;
         line-height: 1.6;
         min-height: 100vh;
@@ -39,299 +38,643 @@
         padding: 0 2rem;
       }
 
-      /* Header */
-      header {
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #fff;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo-img {
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        object-fit: contain;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: #cbd5e1;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: #fff;
+      }
+
+      .nav-cta {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: none;
+        font-size: 0.95rem;
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: #cbd5e1;
+        border: 1px solid rgba(148, 163, 184, 0.3);
+      }
+
+      .btn-outline:hover {
+        background: rgba(148, 163, 184, 0.1);
+        color: #fff;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+      }
+
+      .btn-secondary {
+        background: rgba(51, 65, 85, 0.5);
+        color: #fff;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+      }
+
+      .btn-secondary:hover {
+        background: rgba(71, 85, 105, 0.7);
+      }
+
+      .btn-large {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 8rem 2rem 4rem;
         text-align: center;
-        padding: 4rem 2rem 3rem;
+        min-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(59, 130, 246, 0.1);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        color: #60a5fa;
+        margin-bottom: 2rem;
         animation: fadeInDown 0.8s ease-out;
       }
 
-      header h1 {
-        font-size: 3.5rem;
+      .hero-badge-dot {
+        width: 8px;
+        height: 8px;
+        background: #22c55e;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+
+      .hero h1 {
+        font-size: 4rem;
         font-weight: 800;
         color: #fff;
+        margin-bottom: 1.5rem;
+        line-height: 1.1;
+        animation: fadeInDown 0.8s ease-out;
+      }
+
+      .hero h1 span {
+        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero-subtitle {
+        font-size: 1.4rem;
+        color: #94a3b8;
+        max-width: 700px;
+        margin: 0 auto 2.5rem;
+        animation: fadeInUp 0.8s ease-out 0.2s backwards;
+      }
+
+      .hero-cta {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        animation: fadeInUp 0.8s ease-out 0.4s backwards;
+      }
+
+      .hero-stats {
+        display: flex;
+        gap: 3rem;
+        margin-top: 4rem;
+        animation: fadeInUp 0.8s ease-out 0.6s backwards;
+      }
+
+      .hero-stat {
+        text-align: center;
+      }
+
+      .hero-stat-value {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #fff;
+      }
+
+      .hero-stat-label {
+        color: #94a3b8;
+        font-size: 0.9rem;
+      }
+
+      /* Pain Points */
+      .pain-points {
+        padding: 5rem 0;
+      }
+
+      .section-label {
+        text-align: center;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #60a5fa;
+        text-transform: uppercase;
+        letter-spacing: 2px;
         margin-bottom: 1rem;
-        text-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
       }
 
-      header p {
-        font-size: 1.5rem;
-        color: #cbd5e1;
-      }
-
-      /* Section Titles */
       .section-title {
         font-size: 2.5rem;
         font-weight: 700;
         text-align: center;
-        margin: 3rem 0 2rem;
         color: #fff;
-      }
-
-      /* Architecture Layers */
-      .architecture-section {
-        padding: 2rem 0;
-      }
-
-      .layer {
-        background: rgba(30, 41, 59, 0.5);
-        backdrop-filter: blur(10px);
-        border-radius: 12px;
-        padding: 2rem;
-        margin-bottom: 1.5rem;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        animation: fadeInUp 0.6s ease-out backwards;
-      }
-
-      .layer:nth-child(1) {
-        animation-delay: 0.1s;
-      }
-      .layer:nth-child(2) {
-        animation-delay: 0.2s;
-      }
-      .layer:nth-child(3) {
-        animation-delay: 0.3s;
-      }
-      .layer:nth-child(4) {
-        animation-delay: 0.4s;
-      }
-
-      .layer:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      }
-
-      .layer-header {
-        display: flex;
-        align-items: center;
-        margin-bottom: 1.5rem;
-      }
-
-      .layer-dot {
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        margin-right: 1rem;
-        box-shadow: 0 0 10px currentColor;
-      }
-
-      .dot-blue {
-        background: #3b82f6;
-      }
-      .dot-green {
-        background: #22c55e;
-      }
-      .dot-purple {
-        background: #a855f7;
-      }
-      .dot-orange {
-        background: #f97316;
-      }
-
-      .layer-title {
-        font-size: 1.8rem;
-        font-weight: 600;
-        color: #fff;
-      }
-
-      .components-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1rem;
-        margin-left: 2rem;
-      }
-
-      .component {
-        background: rgba(51, 65, 85, 0.5);
-        padding: 0.75rem 1rem;
-        border-radius: 8px;
-        font-size: 0.95rem;
-        color: #cbd5e1;
-        transition: all 0.3s ease;
-      }
-
-      .component:hover {
-        background: rgba(71, 85, 105, 0.7);
-        transform: scale(1.05);
-      }
-
-      /* Features Grid */
-      .features-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        padding: 2rem 0;
-      }
-
-      .feature-card {
-        background: rgba(30, 41, 59, 0.5);
-        backdrop-filter: blur(10px);
-        border-radius: 12px;
-        padding: 2rem;
-        transition: all 0.3s ease;
-        animation: fadeInUp 0.6s ease-out backwards;
-      }
-
-      .feature-card:nth-child(1) {
-        animation-delay: 0.1s;
-      }
-      .feature-card:nth-child(2) {
-        animation-delay: 0.2s;
-      }
-      .feature-card:nth-child(3) {
-        animation-delay: 0.3s;
-      }
-      .feature-card:nth-child(4) {
-        animation-delay: 0.4s;
-      }
-      .feature-card:nth-child(5) {
-        animation-delay: 0.5s;
-      }
-      .feature-card:nth-child(6) {
-        animation-delay: 0.6s;
-      }
-
-      .feature-card:hover {
-        background: rgba(51, 65, 85, 0.7);
-        transform: translateY(-8px);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-      }
-
-      .feature-icon {
-        font-size: 3rem;
         margin-bottom: 1rem;
       }
 
-      .feature-title {
-        font-size: 1.5rem;
+      .section-subtitle {
+        text-align: center;
+        color: #94a3b8;
+        max-width: 600px;
+        margin: 0 auto 3rem;
+      }
+
+      .pain-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .pain-card {
+        background: rgba(239, 68, 68, 0.05);
+        border: 1px solid rgba(239, 68, 68, 0.2);
+        border-radius: 16px;
+        padding: 2rem;
+        transition: all 0.3s ease;
+      }
+
+      .pain-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(239, 68, 68, 0.4);
+      }
+
+      .pain-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .pain-title {
+        font-size: 1.3rem;
         font-weight: 600;
         color: #fff;
         margin-bottom: 0.5rem;
       }
 
-      .feature-desc {
-        color: #cbd5e1;
+      .pain-desc {
+        color: #94a3b8;
       }
 
-      /* Tech Stack */
-      .tech-stack {
-        background: rgba(30, 41, 59, 0.5);
-        backdrop-filter: blur(10px);
-        border-radius: 12px;
-        padding: 3rem;
-        margin: 2rem 0;
+      /* Solution Section */
+      .solution {
+        padding: 5rem 0;
+        background: rgba(30, 41, 59, 0.3);
       }
 
-      .tech-grid {
+      .solution-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 3rem;
-        margin-top: 2rem;
+        gap: 2rem;
       }
 
-      .tech-category h3 {
-        font-size: 1.5rem;
+      .solution-card {
+        background: rgba(30, 41, 59, 0.5);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 2rem;
+        text-align: center;
+        border: 1px solid rgba(148, 163, 184, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .solution-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(59, 130, 246, 0.3);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .solution-icon {
+        font-size: 3rem;
         margin-bottom: 1rem;
-        color: #60a5fa;
       }
 
-      .tech-category:nth-child(2) h3 {
-        color: #4ade80;
-      }
-      .tech-category:nth-child(3) h3 {
-        color: #c084fc;
-      }
-      .tech-category:nth-child(4) h3 {
-        color: #fb923c;
+      .solution-value {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #3b82f6;
+        margin-bottom: 0.5rem;
       }
 
-      .tech-category ul {
+      .solution-label {
+        color: #94a3b8;
+        font-size: 1rem;
+      }
+
+      /* Pricing Section */
+      .pricing {
+        padding: 5rem 0;
+      }
+
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .pricing-grid.three-cols {
+        max-width: 1100px;
+      }
+
+      .pricing-card {
+        background: rgba(30, 41, 59, 0.5);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 2.5rem;
+        border: 1px solid rgba(148, 163, 184, 0.1);
+        position: relative;
+        transition: all 0.3s ease;
+      }
+
+      .pricing-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+      }
+
+      .pricing-card.featured {
+        border-color: #3b82f6;
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+      }
+
+      .pricing-badge {
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        color: white;
+        padding: 0.5rem 1.5rem;
+        border-radius: 50px;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      .pricing-name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 0.5rem;
+      }
+
+      .pricing-desc {
+        color: #94a3b8;
+        margin-bottom: 1.5rem;
+      }
+
+      .pricing-price {
+        display: flex;
+        align-items: baseline;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .pricing-currency {
+        font-size: 1.5rem;
+        color: #94a3b8;
+      }
+
+      .pricing-amount {
+        font-size: 4rem;
+        font-weight: 800;
+        color: #fff;
+      }
+
+      .pricing-period {
+        color: #94a3b8;
+      }
+
+      .pricing-original {
+        text-decoration: line-through;
+        color: #64748b;
+        font-size: 1.2rem;
+      }
+
+      .pricing-features {
+        list-style: none;
+        margin-bottom: 2rem;
+      }
+
+      .pricing-features li {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 0;
+        color: #cbd5e1;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+      }
+
+      .pricing-features li:last-child {
+        border-bottom: none;
+      }
+
+      .check-icon {
+        color: #22c55e;
+        font-weight: bold;
+      }
+
+      .pricing-btn {
+        width: 100%;
+        text-align: center;
+        display: block;
+      }
+
+      /* Features Section */
+      .features {
+        padding: 5rem 0;
+        background: rgba(30, 41, 59, 0.3);
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .feature-card {
+        background: rgba(30, 41, 59, 0.5);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 2rem;
+        border: 1px solid rgba(148, 163, 184, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(59, 130, 246, 0.3);
+      }
+
+      .feature-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .feature-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 0.75rem;
+      }
+
+      .feature-desc {
+        color: #94a3b8;
+      }
+
+      /* Testimonials */
+      .testimonials {
+        padding: 5rem 0;
+      }
+
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+      }
+
+      .testimonial-card {
+        background: rgba(30, 41, 59, 0.5);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 2rem;
+        border: 1px solid rgba(148, 163, 184, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .testimonial-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .testimonial-content {
+        color: #cbd5e1;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .testimonial-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        color: white;
+      }
+
+      .testimonial-info h4 {
+        color: #fff;
+        font-weight: 600;
+      }
+
+      .testimonial-info p {
+        color: #64748b;
+        font-size: 0.9rem;
+      }
+
+      /* CTA Section */
+      .cta-section {
+        padding: 5rem 0;
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+        text-align: center;
+      }
+
+      .cta-section h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 1rem;
+      }
+
+      .cta-section p {
+        color: #94a3b8;
+        max-width: 500px;
+        margin: 0 auto 2rem;
+      }
+
+      /* Footer */
+      footer {
+        background: rgba(15, 23, 42, 0.95);
+        padding: 4rem 0 2rem;
+        border-top: 1px solid rgba(148, 163, 184, 0.1);
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr repeat(3, 1fr);
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+
+      .footer-brand h3 {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #fff;
+        margin-bottom: 1rem;
+      }
+
+      .footer-brand p {
+        color: #94a3b8;
+        margin-bottom: 1.5rem;
+      }
+
+      .footer-social {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .footer-social a {
+        width: 40px;
+        height: 40px;
+        background: rgba(51, 65, 85, 0.5);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #cbd5e1;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .footer-social a:hover {
+        background: #3b82f6;
+        color: #fff;
+      }
+
+      .footer-column h4 {
+        color: #fff;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+      }
+
+      .footer-column ul {
         list-style: none;
       }
 
-      .tech-category li {
-        padding: 0.5rem 0;
-        color: #cbd5e1;
+      .footer-column li {
+        margin-bottom: 0.75rem;
       }
 
-      .tech-category strong {
-        color: #e2e8f0;
-      }
-
-      /* Roadmap */
-      .roadmap {
-        background: linear-gradient(
-          135deg,
-          rgba(30, 58, 138, 0.3) 0%,
-          rgba(88, 28, 135, 0.3) 100%
-        );
-        backdrop-filter: blur(10px);
-        border-radius: 12px;
-        padding: 3rem;
-        margin: 3rem 0;
-      }
-
-      .phase {
-        background: rgba(30, 41, 59, 0.3);
-        border-radius: 8px;
-        padding: 1.5rem;
-        margin-bottom: 1.5rem;
-        transition: transform 0.3s ease;
-      }
-
-      .phase:hover {
-        transform: translateX(10px);
-      }
-
-      .phase-title {
-        font-size: 1.3rem;
-        font-weight: 600;
-        color: #93c5fd;
-        margin-bottom: 1rem;
-      }
-
-      .phase-items {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-      }
-
-      .phase-item {
-        background: rgba(51, 65, 85, 0.5);
-        color: #cbd5e1;
-        padding: 0.5rem 1rem;
-        border-radius: 6px;
-        font-size: 0.9rem;
-        transition: all 0.3s ease;
-      }
-
-      .phase-item:hover {
-        background: rgba(71, 85, 105, 0.7);
-        transform: scale(1.05);
-      }
-
-      /* CTA Button */
-      .cta-section {
-        text-align: center;
-        padding: 4rem 2rem;
-      }
-
-      .cta-button {
-        display: inline-block;
-        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-        color: white;
-        padding: 1.25rem 3rem;
-        border-radius: 50px;
-        font-size: 1.2rem;
-        font-weight: 600;
+      .footer-column a {
+        color: #94a3b8;
         text-decoration: none;
-        transition: all 0.3s ease;
-        box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        transition: color 0.3s ease;
       }
 
-      .cta-button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 15px 40px rgba(59, 130, 246, 0.5);
+      .footer-column a:hover {
+        color: #fff;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(148, 163, 184, 0.1);
+        padding-top: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .footer-bottom p {
+        color: #64748b;
+      }
+
+      .footer-badges {
+        display: flex;
+        gap: 1.5rem;
+        color: #64748b;
+        font-size: 0.9rem;
       }
 
       /* Animations */
@@ -357,254 +700,368 @@
         }
       }
 
+      @keyframes pulse {
+        0%, 100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      /* Mobile Menu */
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
       /* Responsive */
       @media (max-width: 768px) {
-        header h1 {
+        .nav-links {
+          display: none;
+        }
+
+        .nav-cta {
+          display: none;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        .hero h1 {
           font-size: 2.5rem;
         }
 
-        header p {
-          font-size: 1.2rem;
+        .hero-subtitle {
+          font-size: 1.1rem;
+        }
+
+        .hero-stats {
+          flex-direction: column;
+          gap: 1.5rem;
         }
 
         .section-title {
           font-size: 2rem;
         }
 
-        .components-grid {
+        .pricing-grid {
           grid-template-columns: 1fr;
         }
 
-        .features-grid {
+        .footer-grid {
           grid-template-columns: 1fr;
+          gap: 2rem;
         }
 
-        .tech-grid {
-          grid-template-columns: 1fr;
+        .footer-bottom {
+          flex-direction: column;
+          text-align: center;
         }
-      }
-
-      /* Footer */
-      footer {
-        text-align: center;
-        padding: 3rem 2rem;
-        color: #94a3b8;
-        border-top: 1px solid rgba(148, 163, 184, 0.1);
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <!-- Header -->
-      <header>
-        <h1>VeriQA Automation Platform</h1>
-        <p>Enterprise-grade test automation architecture</p>
-      </header>
+    <!-- Navigation -->
+    <nav>
+      <div class="nav-container">
+        <a href="#" class="logo">
+          <img src="logo.png" alt="VeriQA" class="logo-img" />
+          VeriQA
+        </a>
+        <ul class="nav-links">
+          <li><a href="#features">Tính năng</a></li>
+          <li><a href="#pricing">Bảng giá</a></li>
+          <li><a href="#">Tài liệu</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+        <div class="nav-cta">
+          <a href="#" class="btn btn-outline">Đăng nhập</a>
+          <a href="#pricing" class="btn btn-primary">Mua ngay</a>
+        </div>
+        <button class="mobile-menu-btn">☰</button>
+      </div>
+    </nav>
 
-      <!-- Architecture Section -->
-      <section class="architecture-section">
-        <h2 class="section-title">System Architecture</h2>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Phiên bản 1.0 Beta
+      </div>
+      <h1>
+        Kiểm thử nhanh hơn<br />
+        với <span>VeriQA Platform</span>
+      </h1>
+      <p class="hero-subtitle">
+        Nền tảng kiểm thử tự động all-in-one cho Web, Mobile và API.
+        Tiết kiệm 80% thời gian testing, tăng 10x độ phủ test coverage.
+      </p>
+      <div class="hero-cta">
+        <a href="#pricing" class="btn btn-primary btn-large">Bắt đầu miễn phí</a>
+        <a href="#" class="btn btn-secondary btn-large">Xem Demo</a>
+      </div>
+    </section>
 
-        <div class="layer">
-          <div class="layer-header">
-            <div class="layer-dot dot-blue"></div>
-            <h3 class="layer-title">UI Layer (PySide6)</h3>
+    <!-- Pain Points -->
+    <section class="pain-points container">
+      <p class="section-label">Vấn đề phổ biến</p>
+      <h2 class="section-title">Kiểm thử thủ công đang làm chậm team của bạn?</h2>
+      <p class="section-subtitle">
+        Những thách thức mà hầu hết QA team đều gặp phải khi chưa có automation platform
+      </p>
+      <div class="pain-grid">
+        <div class="pain-card">
+          <div class="pain-icon">⏰</div>
+          <h3 class="pain-title">Tốn quá nhiều thời gian</h3>
+          <p class="pain-desc">
+            Regression testing mất hàng ngày thay vì hàng giờ. Mỗi release là một cuộc marathon kiểm thử.
+          </p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">🔄</div>
+          <h3 class="pain-title">Lặp đi lặp lại nhàm chán</h3>
+          <p class="pain-desc">
+            Cùng một test case được chạy thủ công hàng trăm lần, dễ sai sót và thiếu nhất quán.
+          </p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">📊</div>
+          <h3 class="pain-title">Thiếu báo cáo chi tiết</h3>
+          <p class="pain-desc">
+            Không có dữ liệu để đo lường chất lượng. Khó thuyết phục stakeholder về tình trạng sản phẩm.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution Stats -->
+    <section class="solution">
+      <div class="container">
+        <p class="section-label">Giải pháp VeriQA</p>
+        <h2 class="section-title">Con số nói lên tất cả</h2>
+        <p class="section-subtitle">
+          Những gì khách hàng đã đạt được sau khi sử dụng VeriQA Platform
+        </p>
+        <div class="solution-grid">
+          <div class="solution-card">
+            <div class="solution-icon">🚀</div>
+            <div class="solution-value">80%</div>
+            <div class="solution-label">Tiết kiệm thời gian testing</div>
           </div>
-          <div class="components-grid">
-            <div class="component">Project Explorer</div>
-            <div class="component">Test Case Editor</div>
-            <div class="component">Object Repository</div>
-            <div class="component">Script Editor</div>
-            <div class="component">Test Runner</div>
-            <div class="component">Report Viewer</div>
+          <div class="solution-card">
+            <div class="solution-icon">🎯</div>
+            <div class="solution-value">10x</div>
+            <div class="solution-label">Tăng test coverage</div>
+          </div>
+          <div class="solution-card">
+            <div class="solution-icon">🐛</div>
+            <div class="solution-value">95%</div>
+            <div class="solution-label">Bug được phát hiện sớm</div>
+          </div>
+          <div class="solution-card">
+            <div class="solution-icon">💰</div>
+            <div class="solution-value">3x</div>
+            <div class="solution-label">ROI trong 6 tháng</div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="layer">
-          <div class="layer-header">
-            <div class="layer-dot dot-green"></div>
-            <h3 class="layer-title">Core Engine Layer</h3>
-          </div>
-          <div class="components-grid">
-            <div class="component">Test Orchestrator</div>
-            <div class="component">Execution Engine</div>
-            <div class="component">Recorder Service</div>
-            <div class="component">Object Spy Service</div>
-            <div class="component">Data Manager</div>
-            <div class="component">Report Generator</div>
-          </div>
-        </div>
-
-        <div class="layer">
-          <div class="layer-header">
-            <div class="layer-dot dot-purple"></div>
-            <h3 class="layer-title">Driver Layer</h3>
-          </div>
-          <div class="components-grid">
-            <div class="component">Selenium WebDriver</div>
-            <div class="component">Playwright</div>
-            <div class="component">Appium (Mobile)</div>
-            <div class="component">API Client</div>
-            <div class="component">Database Connector</div>
-          </div>
-        </div>
-
-        <div class="layer">
-          <div class="layer-header">
-            <div class="layer-dot dot-orange"></div>
-            <h3 class="layer-title">Integration Layer</h3>
-          </div>
-          <div class="components-grid">
-            <div class="component">Git Integration</div>
-            <div class="component">CI/CD Plugins</div>
-            <div class="component">JIRA Connector</div>
-            <div class="component">Cloud Execution</div>
-            <div class="component">TestRail API</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Features Section -->
-      <section>
-        <h2 class="section-title">Key Features</h2>
+    <!-- Features -->
+    <section class="features" id="features">
+      <div class="container">
+        <p class="section-label">Tính năng nổi bật</p>
+        <h2 class="section-title">Mọi thứ bạn cần để tự động hóa testing</h2>
+        <p class="section-subtitle">
+          Từ ghi test case đến báo cáo chi tiết, VeriQA cung cấp đầy đủ công cụ cho team của bạn
+        </p>
         <div class="features-grid">
           <div class="feature-card">
             <div class="feature-icon">📝</div>
-            <h3 class="feature-title">Test Case Designer</h3>
-            <p class="feature-desc">Visual editor với drag-drop keywords</p>
+            <h3 class="feature-title">Visual Test Designer</h3>
+            <p class="feature-desc">
+              Tạo test case bằng drag-drop, không cần code. Phù hợp cho cả manual tester.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⏺️</div>
+            <h3 class="feature-title">Smart Recorder</h3>
+            <p class="feature-desc">
+              Ghi lại thao tác và tự động generate test script. Tiết kiệm 90% thời gian viết test.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🌐</div>
+            <h3 class="feature-title">Cross-Platform</h3>
+            <p class="feature-desc">
+              Hỗ trợ Web (Selenium, Playwright), Mobile (Appium) và API testing trong một platform.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3 class="feature-title">Rich Reports</h3>
+            <p class="feature-desc">
+              Báo cáo trực quan với screenshots, video, và analytics chi tiết cho mỗi test run.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔗</div>
+            <h3 class="feature-title">CI/CD Integration</h3>
+            <p class="feature-desc">
+              Tích hợp Jenkins, GitLab, Azure DevOps. Chạy test tự động với mỗi deployment.
+            </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">🎯</div>
             <h3 class="feature-title">Object Repository</h3>
-            <p class="feature-desc">Quản lý UI elements centralized</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">⏺️</div>
-            <h3 class="feature-title">Recorder</h3>
-            <p class="feature-desc">Record actions và generate test cases</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">🔍</div>
-            <h3 class="feature-title">Object Spy</h3>
-            <p class="feature-desc">Capture và inspect UI elements</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">📊</div>
-            <h3 class="feature-title">Reports</h3>
-            <p class="feature-desc">Chi tiết execution results với charts</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">🔄</div>
-            <h3 class="feature-title">CI/CD</h3>
-            <p class="feature-desc">Jenkins, GitLab, Azure DevOps</p>
+            <p class="feature-desc">
+              Quản lý UI elements tập trung. Thay đổi một chỗ, cập nhật tất cả test cases.
+            </p>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Tech Stack Section -->
-      <section class="tech-stack">
-        <h2 class="section-title">Recommended Tech Stack</h2>
-        <div class="tech-grid">
-          <div class="tech-category">
-            <h3>Frontend/UI</h3>
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+      <div class="container">
+        <p class="section-label">Bảng giá</p>
+        <h2 class="section-title">Chọn gói phù hợp với team của bạn</h2>
+        <p class="section-subtitle">
+          Bắt đầu miễn phí, nâng cấp khi cần. Không cần thẻ tín dụng.
+        </p>
+        <div class="pricing-grid three-cols">
+          <div class="pricing-card">
+            <h3 class="pricing-name">Starter</h3>
+            <p class="pricing-desc">Dành cho cá nhân & học tập</p>
+            <div class="pricing-price">
+              <span class="pricing-currency">$</span>
+              <span class="pricing-amount">0</span>
+              <span class="pricing-period">/tháng</span>
+            </div>
+            <ul class="pricing-features">
+              <li><span class="check-icon">✓</span> 1 user</li>
+              <li><span class="check-icon">✓</span> 50 test cases</li>
+              <li><span class="check-icon">✓</span> Run Local</li>
+              <li><span class="check-icon">✓</span> Web testing</li>
+              <li><span class="check-icon">✓</span> Basic reports</li>
+              <li><span class="check-icon">✓</span> Community support</li>
+            </ul>
+            <a href="#" class="btn btn-secondary pricing-btn">Bắt đầu miễn phí</a>
+          </div>
+          <div class="pricing-card featured">
+            <div class="pricing-badge">Phổ biến nhất</div>
+            <h3 class="pricing-name">Professional</h3>
+            <p class="pricing-desc">Dành cho team nhỏ & startup</p>
+            <div class="pricing-price">
+              <span class="pricing-currency">$</span>
+              <span class="pricing-amount">30</span>
+              <span class="pricing-period">/tháng</span>
+            </div>
+            <ul class="pricing-features">
+              <li><span class="check-icon">✓</span> 10 users</li>
+              <li><span class="check-icon">✓</span> Unlimited test cases</li>
+              <li><span class="check-icon">✓</span> Run Local</li>
+              <li><span class="check-icon">✓</span> Web + Mobile + API testing</li>
+              <li><span class="check-icon">✓</span> Advanced reports</li>
+              <li><span class="check-icon">✓</span> CI/CD integration</li>
+              <li><span class="check-icon">✓</span> Email support</li>
+            </ul>
+            <a href="#" class="btn btn-primary pricing-btn">Bắt đầu 14 ngày dùng thử</a>
+          </div>
+          <div class="pricing-card">
+            <h3 class="pricing-name">Cloud</h3>
+            <p class="pricing-desc">Dành cho doanh nghiệp lớn</p>
+            <div class="pricing-price">
+              <span class="pricing-currency">$</span>
+              <span class="pricing-amount">99</span>
+              <span class="pricing-period">/tháng</span>
+            </div>
+            <ul class="pricing-features">
+              <li><span class="check-icon">✓</span> Unlimited users</li>
+              <li><span class="check-icon">✓</span> Unlimited test cases</li>
+              <li><span class="check-icon">✓</span> Run on Cloud</li>
+              <li><span class="check-icon">✓</span> Parallel execution</li>
+              <li><span class="check-icon">✓</span> Web + Mobile + API testing</li>
+              <li><span class="check-icon">✓</span> Advanced analytics</li>
+              <li><span class="check-icon">✓</span> Priority support 24/7</li>
+            </ul>
+            <a href="#" class="btn btn-secondary pricing-btn">Liên hệ tư vấn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>Sẵn sàng tự động hóa testing?</h2>
+        <p>
+          Trải nghiệm ngay phiên bản Beta. Bắt đầu miễn phí.
+        </p>
+        <a href="#pricing" class="btn btn-primary btn-large">Bắt đầu ngay</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <h3>VeriQA</h3>
+            <p>
+              Nền tảng kiểm thử tự động dành cho đội ngũ phát triển phần mềm tại Việt Nam.
+            </p>
+            <div class="footer-social">
+              <a href="#" title="Facebook">f</a>
+              <a href="#" title="LinkedIn">in</a>
+              <a href="#" title="YouTube">▶</a>
+              <a href="#" title="GitHub">GH</a>
+            </div>
+          </div>
+          <div class="footer-column">
+            <h4>Sản phẩm</h4>
             <ul>
-              <li>• <strong>PySide6/PyQt6</strong> - Main UI framework</li>
-              <li>
-                • <strong>QScintilla</strong> - Code editor với syntax
-                highlighting
-              </li>
-              <li>
-                • <strong>QtWebEngine</strong> - Embedded browser cho recorder
-              </li>
+              <li><a href="#">Tính năng</a></li>
+              <li><a href="#">Bảng giá</a></li>
+              <li><a href="#">Integrations</a></li>
+              <li><a href="#">Changelog</a></li>
             </ul>
           </div>
-          <div class="tech-category">
-            <h3>Test Engines</h3>
+          <div class="footer-column">
+            <h4>Tài nguyên</h4>
             <ul>
-              <li>
-                • <strong>Selenium</strong> - Web automation (legacy support)
-              </li>
-              <li>• <strong>Playwright</strong> - Modern web testing</li>
-              <li>• <strong>Appium</strong> - Mobile automation</li>
-              <li>• <strong>Requests</strong> - API testing</li>
+              <li><a href="#">Documentation</a></li>
+              <li><a href="#">API Reference</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Case Studies</a></li>
             </ul>
           </div>
-          <div class="tech-category">
-            <h3>Storage</h3>
+          <div class="footer-column">
+            <h4>Công ty</h4>
             <ul>
-              <li>• <strong>SQLite</strong> - Local project database</li>
-              <li>• <strong>JSON/YAML</strong> - Test case definitions</li>
-              <li>• <strong>Git</strong> - Version control integration</li>
-            </ul>
-          </div>
-          <div class="tech-category">
-            <h3>Reporting</h3>
-            <ul>
-              <li>• <strong>Jinja2</strong> - HTML report templates</li>
-              <li>• <strong>Matplotlib</strong> - Charts & graphs</li>
-              <li>• <strong>ReportLab</strong> - PDF generation</li>
+              <li><a href="#">Về chúng tôi</a></li>
+              <li><a href="#">Liên hệ</a></li>
+              <li><a href="#">Tuyển dụng</a></li>
+              <li><a href="#">Điều khoản</a></li>
             </ul>
           </div>
         </div>
-      </section>
-
-      <!-- Roadmap Section -->
-      <section class="roadmap">
-        <h2 class="section-title">Development Roadmap</h2>
-
-        <div class="phase">
-          <h3 class="phase-title">Phase 1 (2-3 months)</h3>
-          <div class="phase-items">
-            <span class="phase-item">Project structure</span>
-            <span class="phase-item">Basic UI</span>
-            <span class="phase-item">Simple web recorder</span>
-            <span class="phase-item">Test case editor</span>
-            <span class="phase-item">Selenium integration</span>
+        <div class="footer-bottom">
+          <p>&copy; 2025 VeriQA Platform. All rights reserved.</p>
+          <div class="footer-badges">
+            <span>SSL Secured</span>
+            <span>SOC 2 Certified</span>
+            <span>GDPR Compliant</span>
           </div>
         </div>
-
-        <div class="phase">
-          <h3 class="phase-title">Phase 2 (2-3 months)</h3>
-          <div class="phase-items">
-            <span class="phase-item">Object repository</span>
-            <span class="phase-item">Playwright integration</span>
-            <span class="phase-item">Data-driven testing</span>
-            <span class="phase-item">Basic reporting</span>
-            <span class="phase-item">Test suite management</span>
-          </div>
-        </div>
-
-        <div class="phase">
-          <h3 class="phase-title">Phase 3 (3-4 months)</h3>
-          <div class="phase-items">
-            <span class="phase-item">Mobile testing (Appium)</span>
-            <span class="phase-item">API testing</span>
-            <span class="phase-item">Advanced recorder</span>
-            <span class="phase-item">CI/CD plugins</span>
-            <span class="phase-item">Cloud execution</span>
-          </div>
-        </div>
-
-        <div class="phase">
-          <h3 class="phase-title">Phase 4 (2-3 months)</h3>
-          <div class="phase-items">
-            <span class="phase-item">Advanced reporting</span>
-            <span class="phase-item">JIRA integration</span>
-            <span class="phase-item">Performance testing</span>
-            <span class="phase-item">Polish & optimization</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA Section -->
-      <section class="cta-section">
-        <a href="#" class="cta-button">Start Building Now</a>
-      </section>
-
-      <!-- Footer -->
-      <footer>
-        <p>&copy; 2025 VeriQA Automation Platform. All rights reserved.</p>
-      </footer>
-    </div>
+      </div>
+    </footer>
   </body>
 </html>
